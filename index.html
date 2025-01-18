@@ -586,55 +586,85 @@ jQuery(function ($) {
 
 	</script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const form = document.querySelector("form");
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        
-        // تأكد من وجود العناصر قبل الوصول إليها
-        const nameField = document.querySelector("input[name='name']");
-        const emailField = document.querySelector("input[name='email']");
-        const phoneField = document.querySelector("input[name='Phone']");
-        const messageField = document.querySelector("textarea[name='message']");
-        
-        // تحقق إذا كانت العناصر موجودة
-        if (!nameField || !emailField || !phoneField || !messageField) {
-          console.error("أحد الحقول مفقود");
-          return; // إيقاف تنفيذ الكود إذا كانت هناك مشكلة
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+
+    if (!form) {
+      console.error("النموذج غير موجود!");
+      return;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nameField = document.querySelector("input[name='name']");
+      const emailField = document.querySelector("input[name='email']");
+      const phoneField = document.querySelector("input[name='Phone']");
+      const messageField = document.querySelector("textarea[name='message']");
+
+      if (!nameField || !emailField || !phoneField || !messageField) {
+        console.error("أحد الحقول مفقود");
+        return;
+      }
+
+      const data = {
+        name: nameField.value.trim(),
+        email: emailField.value.trim(),
+        phone: phoneField.value.trim(),
+        message: messageField.value.trim(),
+      };
+
+      // التحقق من صحة الحقول
+      if (!data.name || !data.email || !data.phone || !data.message) {
+        alert("جميع الحقول مطلوبة!");
+        return;
+      }
+
+      if (!/\S+@\S+\.\S+/.test(data.email)) {
+        alert("يرجى إدخال بريد إلكتروني صالح!");
+        return;
+      }
+
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbwt9d9gLBsy-znYZGxORz_72T3qCxGbD22adVTx4Q7v2KmB4GxObKB9NwQQv9LLeaCz/exec";
+
+      // أظهر مؤشر تحميل
+      const submitButton = form.querySelector("button[type='submit']");
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "جارٍ الإرسال...";
+      }
+
+      try {
+        const response = await fetch(scriptURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log("Success:", result);
+          alert("تم إرسال البيانات بنجاح!");
+          form.reset();
+        } else {
+          console.error("Error:", response.statusText);
+          alert("حدث خطأ أثناء إرسال البيانات. الرجاء المحاولة مرة أخرى.");
         }
-  
-        const data = {
-          name: nameField.value,
-          email: emailField.value,
-          phone: phoneField.value,
-          message: messageField.value,
-        };
-  
-        // استبدل الرابط الفعلي لتطبيق Google Apps Script
-        const scriptURL = "https://script.google.com/macros/s/AKfycbwt9d9gLBsy-znYZGxORz_72T3qCxGbD22adVTx4Q7v2KmB4GxObKB9NwQQv9LLeaCz/exec"; // ضع الرابط الفعلي هنا
-  
-        try {
-          const response = await fetch(scriptURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          });
-  
-          if (response.ok) {
-            console.log("Success:", await response.json()); // أظهر النتيجة في الـ Console
-            alert("تم إرسال البيانات بنجاح!");
-            form.reset(); // إعادة تعيين النموذج بعد الإرسال الناجح
-          } else {
-            console.log("Error:", response.statusText); // أظهر الخطأ في الـ Console
-            alert("حدث خطأ أثناء إرسال البيانات.");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          alert("حدث خطأ أثناء إرسال البيانات.");
+      } catch (error) {
+        console.error("Error:", error);
+        alert("تعذر إرسال البيانات. تحقق من اتصالك بالإنترنت.");
+      } finally {
+        // إعادة تفعيل الزر
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = "إرسال";
         }
-      });
+      }
     });
-  </script>
+  });
+</script>
+
   
 </body>
 
