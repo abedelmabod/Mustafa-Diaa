@@ -36,6 +36,24 @@
     <![endif]-->
 
 </head>
+<style>
+	/* Simple styling for the read-more button */
+	.read-more-btn {
+		display: inline-block;
+		margin-top: 10px;
+		background-color: #007bff;
+		color: #fff;
+		padding: 8px 15px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 14px;
+	}
+
+	.read-more-btn:hover {
+		background-color: #0056b3;
+	}
+</style>
 
 <body id="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
 
@@ -104,15 +122,29 @@
                         <div class="heading_main text_align_left">
 						   <h2><span>Welcome To</span> Education</h2>
                         </div>
-						<div class="full">
-						 <h1>Mustafa Diaa</h1><p>is an accounting instructor at the Faculty of Commerce and is considered one of the leading specialists in this field, with distinguished professional and academic experience. He has been working in the accounting field since 2014 and has significantly contributed to the development of accounting education in Egypt. He is known as a professional and specialized expert in all areas of accounting, including financial accounting, managerial accounting, financial auditing, and financial analysis.
-
-							Through his many years of academic and practical experience, Mustafa has provided students with a deep understanding of complex accounting concepts in a simplified manner. He employs innovative teaching methods that encourage interaction and engagement, allowing students to engage with the material in a practical and applied way. He uses modern educational tools to connect theoretical accounting lessons with real-world market applications, which helps students prepare for careers in financial institutions and major corporations.
-							
-							In addition to teaching lectures, Mustafa Diaa contributes to publishing scientific research aimed at improving accounting practices across various sectors. He also participates in workshops and seminars related to accounting, sharing expertise and knowledge with other professionals in the field. He places great emphasis on training students in advanced financial analysis and the use of modern accounting software, enhancing their skills and competitiveness in the job market.
-							
-							Mustafa is known for his exceptional ability to motivate students, constantly striving to deliver engaging and interesting lectures, making his classes highly sought after by students eager to gain a comprehensive understanding of accounting. He also continually develops himself by staying updated on the latest trends in accounting and participating in specialized training courses.</p>
+						<div class="full" id="mdd">
+							<div class="container mt-5">
+								<h2>About Mustafa Diaa</h2>
+								<div id="text-container">
+									<p>
+										Mustafa Diaa is an accounting instructor at the Faculty of Commerce and is considered one of the leading
+										specialists in this field, with distinguished professional and academic experience. He has been working
+										in the accounting field since 2014 and has significantly contributed to the development of accounting
+										education in Egypt. He is known as a professional and specialized expert in all areas of accounting,
+										including financial accounting, managerial accounting, financial auditing, and financial analysis.
+										<br><br>
+										Through his many years of academic and practical experience, Mustafa has provided students with a deep
+										understanding of complex accounting concepts in a simplified manner. He employs innovative teaching
+										methods that encourage interaction and engagement, allowing students to engage with the material in a
+										practical and applied way. He uses modern educational tools to connect theoretical accounting lessons
+										with real-world market applications, which helps students prepare for careers in financial institutions
+										and major corporations.
+									</p>
+								</div>
+								<button class="read-more-btn" id="read-more-btn">Read More</button>
+							</div>
 						</div>
+						
 						<br>
 						<div class="full">
 						   <!-- <a class="hvr-radial-out button-theme" href="#">About more</a>  -->
@@ -349,6 +381,33 @@ jQuery(function ($) {
 	$this.countTo(options);
   }
 });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const textContainer = document.getElementById("text-container");
+            const readMoreBtn = document.getElementById("read-more-btn");
+
+            // Save the original full text
+            const fullText = textContainer.innerHTML;
+
+            // Truncate the text (first 300 characters as an example)
+            const truncatedText = fullText.substring(0, 300) + '...';
+
+            // Initially display truncated text
+            let isExpanded = false;
+            textContainer.innerHTML = truncatedText;
+
+            readMoreBtn.addEventListener("click", function () {
+                if (isExpanded) {
+                    textContainer.innerHTML = truncatedText;
+                    readMoreBtn.textContent = "Read More";
+                } else {
+                    textContainer.innerHTML = fullText;
+                    readMoreBtn.textContent = "Read Less";
+                }
+                isExpanded = !isExpanded;
+            });
+        });
+   
 	</script>
 </body>
 
