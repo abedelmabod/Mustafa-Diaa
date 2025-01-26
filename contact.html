@@ -121,6 +121,25 @@
 								Your message:
 								<textarea name="message"></textarea>
 							</label>
+							<label>
+								Your phone:
+								<input type="tel" name="phone number" placeholder="+1234567890" pattern="\+?[0-9]{10,15}" required>
+							</label>
+							<br>
+							<label for="class">Select Class:</label>
+							<select id="class" name="class" required
+							style="    border: cornflowerblue;
+							margin-left: 26px;
+							width: 190px;
+							height: 35px;
+							margin-bottom: 25px;">
+								<option value="" disabled selected>Select your class</option>
+								<option value="Class 1">Class 1</option>
+								<option value="Class 2">Class 2</option>
+								<option value="Class 3">Class 3</option>
+								<option value="Class 4">Class 4</option>
+								
+							</select>
 							<!-- your other form fields go here -->
 							<button type="submit">Send</button>
 						</form>
