@@ -379,7 +379,7 @@ a.navbar-brand img {
 .top-header .navbar .navbar-collapse ul li a:hover,
 .top-header .navbar .navbar-collapse ul li a:focus {
 	background: transparent;
-	color: #d4a81e;
+	color: #07528d;
 }
 
 .search_icon.nav-link img {
@@ -406,7 +406,7 @@ a.navbar-brand img {
 }
 
 .navbar-toggler {
-	border: 2px solid #d4a81e !important;
+	border: 2px solid #07528d !important;
 	border-radius: 0;
 	margin: 15px 15px;
 	padding: 8px 8px;
@@ -417,7 +417,7 @@ a.navbar-brand img {
 }
 
 .navbar-toggler span {
-	background: #d4a81e;
+	background: #07528d;
 	display: block;
 	width: 22px;
 	height: 2px;
@@ -438,11 +438,11 @@ a.navbar-brand img {
 }
 
 .navbar-toggler:hover {
-	border: 2px solid #d4a81e;
+	border: 2px solid#07528d;
 }
 
 .navbar-toggler:hover span {
-	background: #d4a81e;
+	background: #07528d;
 }
 
 .tab_menu {
@@ -505,7 +505,7 @@ a.navbar-brand img {
 }
 
 .theme_color {
-	color: #d4a81e;
+	color: #07528d;
 }
 
 
@@ -602,7 +602,7 @@ a.navbar-brand img {
 }
 
 .pogoSlider-nav-btn--selected {
-	background: #d4a81e !important;
+	background: #07528d !important;
 }
 
 .pogoSlider--navBottom .pogoSlider-nav {
@@ -641,7 +641,7 @@ a.navbar-brand img {
 }
 
 .slide_text p {
-    color: #d4a81e;
+    color: #07528d;
     font-size: 20px;
     font-weight: 300;
     padding-top: 0;
@@ -652,7 +652,7 @@ a.navbar-brand img {
 .contact_bt {
     width: 180px;
     height: 50px;
-    background: #d4a81e;
+    background: #07528d;
     color: #fff;
     float: left;
     line-height: 50px;
@@ -698,7 +698,7 @@ a.navbar-brand img {
 }
 
 .tab_menu ul li:nth-child(6) {
-    background: #d4a81e;
+    background: #07528d;
     transform: skew(-30deg);
 	color:#fff;
 }
@@ -1598,7 +1598,7 @@ p.count-text {
 	margin-right: 15px;
 	color: #fff;
 	border-radius: 100%;
-	background: #d4a81e;
+	background: #07528d;
 }
 
 .dit-right h4 {
@@ -1641,7 +1641,7 @@ p.count-text {
 }
 
 .submit-button .btn-common {
-	background-color: #d4a81e;
+	background-color: #07528d;
 	height: 45px;
 	line-height: 45px;
 	font-size: 14px;
@@ -1930,7 +1930,7 @@ h3.small_heading {
 }
 
 .carousel a.carousel-control-prev {
-    background: #d4a81e;
+    background: #07528d;
     opacity: 1;
     width: 55px;
     height: 50px;
@@ -1940,7 +1940,7 @@ h3.small_heading {
 }
 
 .carousel a.carousel-control-next {
-	background: #d4a81e;
+	background: #07528d;
 	opacity: 1;
 	width: 50px;
 	height: 50px;
@@ -2044,7 +2044,7 @@ ul.social_icon li {
 }
 
 .newsletter_form button {
-    background: #e0af14;
+    background:#07528d;
     color: #fff;
     border: none;
     font-size: 14px;
@@ -2058,7 +2058,7 @@ ul.social_icon li {
     margin-bottom: 10px;
     font-size: 22px;
     color: #fff;
-    border-bottom: solid #e0af14 2px;
+    border-bottom: solid #07528d 2px;
     font-weight: 600;
     margin-top: 14px;
     float: right;
@@ -2230,7 +2230,7 @@ section.inner_banner h3 {
 }
 
 .contact_form button {
-    background: #e0af14;
+    background: #07528d;
     border: none;
     color: #fff;
     width: 200px;
