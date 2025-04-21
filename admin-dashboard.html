@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة تحكم الأدمن</title>
+  <link rel="stylesheet" href="logstyle.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>مرحباً، <span id="admin-name"></span></h1>
+    <h3>أنت حالياً في لوحة تحكم الأدمن</h3>
+
+    <!-- زر إضافة فيديو (موجود بالفعل) -->
+    <button id="add-video-btn" onclick="window.location.href='add-video.html'">إضافة فيديو</button>
+
+    <!-- زر للانتقال إلى الداش بورد -->
+    <button id="go-to-dashboard-btn" onclick="window.location.href='dashboard.html'">الذهاب إلى الداش بورد</button>
+
+    <!-- المزيد من المحتويات الخاصة بالأدمن يمكن إضافتها هنا -->
+  </div>
+
+  <script>
+    const adminUsername = localStorage.getItem("user");
+
+    // إظهار اسم الأدمن في الصفحة
+    document.getElementById("admin-name").innerText = adminUsername;
+  </script>
+</body>
+</html>

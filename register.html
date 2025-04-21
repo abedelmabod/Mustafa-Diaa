@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>إنشاء حساب جديد</title>
+  <link rel="stylesheet" href="logstyle.css">
+</head>
+<body>
+  <div class="login-box">
+    <h2>إنشاء حساب جديد</h2>
+    <form id="register-form">
+      <input type="text" id="new-username" placeholder="اسم المستخدم" required>
+      <input type="password" id="new-password" placeholder="كلمة المرور" required>
+      <select id="year" required>
+        <option value="">اختر السنة الدراسية</option>
+        <option value="اولى">أولى</option>
+        <option value="تانية">تانية</option>
+      </select>
+      <button type="submit">إنشاء الحساب</button>
+    </form>
+  </div>
+
+  <script>
+    // الحصول على البيانات من localStorage
+    const storedStudents = JSON.parse(localStorage.getItem("students")) || {
+      "ahmed123": { password: "123456", year: "اولى" },
+      "salma99": { password: "password", year: "تانية" },
+      "admin": { password: "admin", year: "admin" }
+    };
+
+    document.getElementById("register-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const newUsername = document.getElementById("new-username").value.trim();
+      const newPassword = document.getElementById("new-password").value.trim();
+      const newYear = document.getElementById("year").value.trim();
+
+      // التحقق إذا كان اسم المستخدم موجود بالفعل
+      if (storedStudents[newUsername]) {
+        alert("❌ اسم المستخدم موجود بالفعل.");
+      } else if (newUsername && newPassword && newYear) {
+        // إضافة المستخدم الجديد إلى البيانات
+        storedStudents[newUsername] = { password: newPassword, year: newYear };
+
+        // تخزين البيانات في localStorage
+        localStorage.setItem("students", JSON.stringify(storedStudents));
+
+        alert("✅ تم إنشاء الحساب بنجاح!");
+        window.location.href = "login.html";  // التوجيه إلى صفحة تسجيل الدخول بعد إنشاء الحساب
+      } else {
+        alert("⚠️ الرجاء تعبئة جميع الحقول.");
+      }
+    });
+  </script>
+</body>
+</html>

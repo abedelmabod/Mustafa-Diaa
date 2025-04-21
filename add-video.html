@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>إضافة فيديو - مصطفى ضياء</title>
+  <link rel="stylesheet" href="logstyle.css">
+</head>
+<body>
+  <div class="add-video-container">
+    <h1>إضافة فيديو جديد</h1>
+
+    <form id="add-video-form">
+      <label for="year">اختر السنة:</label>
+      <select id="year" name="year" required>
+        <option value="">-- اختر السنة --</option>
+        <option value="اولى">أولى</option>
+        <option value="تانية">تانية</option>
+        <option value="تالتة">تالتة</option>
+        <option value="رابعة">رابعة</option>
+      </select>
+
+      <label for="course">اسم الكورس:</label>
+      <input type="text" id="course" name="course" placeholder="أدخل اسم الكورس" required>
+
+      <label for="title">عنوان الفيديو:</label>
+      <input type="text" id="title" name="title" placeholder="أدخل عنوان الفيديو" required>
+
+      <label for="url">رابط الفيديو:</label>
+      <input type="url" id="url" name="url" placeholder="أدخل رابط الفيديو من Google Drive" required>
+
+      <button type="submit">إضافة الفيديو</button>
+    </form>
+
+    <button onclick="goBack()">رجوع إلى لوحة التحكم</button>
+  </div>
+
+  <script>
+    // دالة لاستخراج رابط الفيديو من Google Drive
+    const extractDriveEmbed = (url) => {
+      const match = url.match(/\/d\/(.+?)\//);
+      return match ? `https://drive.google.com/file/d/${match[1]}/preview` : url;
+    };
+
+    // عند إرسال الفورم
+    document.getElementById("add-video-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const year = document.getElementById("year").value.trim();
+      const course = document.getElementById("course").value.trim();
+      const title = document.getElementById("title").value.trim();
+      const url = document.getElementById("url").value.trim();
+
+      if (year && course && title && url) {
+        const embedUrl = extractDriveEmbed(url);
+        let videosByYear = JSON.parse(localStorage.getItem("videosByYear")) || {};
+
+        if (!videosByYear[year]) videosByYear[year] = [];
+
+        let courseObj = videosByYear[year].find(c => c.course === course);
+
+        if (courseObj) {
+          courseObj.videos.push({ title, url: embedUrl });
+        } else {
+          videosByYear[year].push({
+            course,
+            videos: [{ title, url: embedUrl }]
+          });
+        }
+
+        localStorage.setItem("videosByYear", JSON.stringify(videosByYear));
+
+        alert("✅ تم إضافة الفيديو بنجاح!");
+        window.location.href = "dashboard.html"; // بعد الإضافة نرجع لصفحة الـ Dashboard
+      } else {
+        alert("⚠️ الرجاء تعبئة جميع الحقول.");
+      }
+    });
+
+    // العودة إلى الداشبورد
+    function goBack() {
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

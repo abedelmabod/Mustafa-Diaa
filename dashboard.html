@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الكورسات - مصطفى ضياء</title>
+  <link rel="stylesheet" href="logstyle.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>مرحباً، <span id="user-name"></span></h1>
+    <h3>المرحلة الدراسية: <span id="user-year"></span></h3>
+
+    <div id="courses-container"></div>
+
+    <!-- زر لإضافة فيديو جديد فقط للمسؤول -->
+    <button id="add-video-btn" style="display:none" onclick="window.location.href='add-video.html'">إضافة فيديو</button>
+
+    <!-- زر تسجيل الخروج -->
+    <button id="logout-btn" onclick="logout()">تسجيل الخروج</button>
+  </div>
+
+  <script>
+    const username = localStorage.getItem("user");
+    const year = localStorage.getItem("year");
+
+    document.getElementById("user-name").innerText = username;
+    document.getElementById("user-year").innerText = year;
+
+    // إظهار زر إضافة الفيديو فقط إذا كان المستخدم هو الأدمن
+    if (year === "admin") {
+      document.getElementById("add-video-btn").style.display = "block";
+    }
+
+    const container = document.getElementById("courses-container");
+
+    const renderCourses = (courseList, yearLabel) => {
+      const yearHeader = document.createElement("h2");
+      yearHeader.innerText = `📘 كورسات سنة ${yearLabel}`;
+      container.appendChild(yearHeader);
+
+      courseList.forEach((course, courseIndex) => {
+        const courseBox = document.createElement("div");
+        courseBox.className = "course-box";
+
+        const title = document.createElement("h3");
+        title.innerText = `📚 ${course.course}`;
+        courseBox.appendChild(title);
+
+        course.videos.forEach((video, videoIndex) => {
+          const videoTitle = document.createElement("p");
+          videoTitle.innerText = video.title;
+
+          const iframe = document.createElement("iframe");
+          iframe.src = video.url;
+          iframe.width = "100%";
+          iframe.height = "360";
+          iframe.allow = "autoplay; fullscreen";
+          iframe.setAttribute("frameborder", "0");
+
+          // زر الحذف للفيديو يظهر فقط إذا كان المستخدم هو الأدمن
+          if (year === "admin") {
+            const deleteButton = document.createElement("button");
+            deleteButton.innerText = "حذف الفيديو";
+            deleteButton.style.backgroundColor = "red";
+            deleteButton.style.color = "white";
+            deleteButton.style.border = "none";
+            deleteButton.style.padding = "5px 10px";
+            deleteButton.style.cursor = "pointer";
+            deleteButton.onclick = () => {
+              deleteVideo(yearLabel, courseIndex, videoIndex);
+            };
+
+            courseBox.appendChild(deleteButton);
+          }
+
+          courseBox.appendChild(videoTitle);
+          courseBox.appendChild(iframe);
+        });
+
+        container.appendChild(courseBox);
+      });
+    };
+
+    // دالة لحذف الفيديو
+    const deleteVideo = (yearLabel, courseIndex, videoIndex) => {
+      const videosByYear = JSON.parse(localStorage.getItem("videosByYear")) || {};
+
+      // حذف الفيديو من قائمة الفيديوهات
+      videosByYear[yearLabel][courseIndex].videos.splice(videoIndex, 1);
+
+      // إذا كانت القائمة فارغة بعد الحذف، يتم حذف الكورس
+      if (videosByYear[yearLabel][courseIndex].videos.length === 0) {
+        videosByYear[yearLabel].splice(courseIndex, 1);
+      }
+
+      // حفظ البيانات المعدلة في Local Storage
+      localStorage.setItem("videosByYear", JSON.stringify(videosByYear));
+
+      alert("✅ تم حذف الفيديو بنجاح!");
+      location.reload();  // إعادة تحميل الصفحة لتحديث العرض
+    };
+
+    // تحميل الفيديوهات من localStorage
+    const videosByYear = JSON.parse(localStorage.getItem("videosByYear")) || {};
+
+    if (year === "admin") {
+      for (let y in videosByYear) {
+        renderCourses(videosByYear[y], y);
+      }
+    } else {
+      renderCourses(videosByYear[year], year);
+    }
+
+    // دالة لتسجيل الخروج
+    function logout() {
+      // إزالة بيانات المستخدم من localStorage
+      localStorage.removeItem("user");
+      localStorage.removeItem("year");
+
+      // التوجيه إلى صفحة تسجيل الدخول
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
+                 

@@ -1,0 +1,181 @@
+/* إعدادات الجسم */
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  /* التصميم العام لعلبة الدخول والتسجيل */
+  .login-box, .signup-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  /* تأثير عند تمرير الفأرة على علبة الدخول والتسجيل */
+  .login-box:hover, .signup-container:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+  
+  /* الإدخالات (النصوص) داخل النماذج */
+  input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  /* تأثير عند التفاعل مع الإدخالات */
+  input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* الأزرار */
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* تأثير hover على الأزرار */
+  button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* المحتوى الخاص باللوحة الرئيسية (Dashboard) */
+  .dashboard-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* الصناديق الخاصة بالكورسات */
+  .course-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  /* تأثير عند التفاعل مع صناديق الكورسات */
+  .course-box:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+  }
+  
+  /* العناوين */
+  h2, h3 {
+    color: #333;
+    font-weight: 600;
+  }
+  
+  /* زر إضافة الفيديو فقط للمسؤول */
+  #add-video-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* تأثير hover على زر إضافة الفيديو */
+  #add-video-btn:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  /* حقل البحث */
+  #search {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* تأثير عند التفاعل مع حقل البحث */
+  #search:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* النصوص والروابط */
+  p {
+    margin-top: 20px;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* تصميم الجداول أو القوائم إذا كنت تستخدمها */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th, table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* تخصيص الواجهة عند التمرير فوق العناصر */
+  button:focus, input:focus {
+    outline: none;
+  }
+  
+  /* تخصيص النصوص داخل المربعات */
+  h1, h2, h3 {
+    font-weight: bold;
+    font-size: 22px;
+    color: #333;
+  }
+  
