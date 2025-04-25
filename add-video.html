@@ -4,9 +4,177 @@
   <meta charset="UTF-8">
   <title>إضافة فيديو - مصطفى ضياء</title>
   <link rel="stylesheet" href="logstyle.css">
+  <style>/* تنسيق لصفحة إضافة الفيديو مع دعم SweetAlert و Dark Mode */
+
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f9fafc;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .add-video-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    h1 {
+      color: #0d6efd;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    form label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    form input,
+    form select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+    }
+    
+    form input:focus,
+    form select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+      display: block;
+      width: 100%;
+    }
+    
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+    /* زر العودة */
+    .add-video-container button:last-of-type {
+      background-color: #6c757d;
+      margin-top: 20px;
+    }
+    
+    .add-video-container button:last-of-type:hover {
+      background-color: #5a6268;
+    }
+    
+  /* زر الوضع الليلي */
+.toggle-dark-mode {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.toggle-dark-mode:hover {
+  background-color: #ddd;
+}
+
+body.dark-mode .toggle-dark-mode {
+  background-color: #222;
+  color: #fff;
+}
+
+body.dark-mode .toggle-dark-mode:hover {
+  background-color: #444;
+}
+
+    
+    /* الوضع الليلي */
+    body.dark-mode {
+      background-color: #1e1e2f;
+      color: #f1f1f1;
+    }
+    
+    .dark-mode .add-video-container {
+      background-color: #2c2c3e;
+      color: #f1f1f1;
+    }
+    
+    .dark-mode input,
+    .dark-mode select {
+      background-color: #444;
+      color: #fff;
+      border: 1px solid #888;
+    }
+    
+    .dark-mode input:focus,
+    .dark-mode select:focus {
+      border-color: #66afe9;
+    }
+    
+    .dark-mode button {
+      background-color: #444;
+      color: white;
+    }
+    
+    .dark-mode button:hover {
+      background-color: #666;
+    }
+    
+    @media screen and (max-width: 768px) {
+      .add-video-container {
+        margin: 10px;
+        padding: 20px;
+      }
+    }
+    
+    /* SweetAlert تعديل الأزرار لتتناسب مع التنسيق */
+    .swal-button {
+      background-color: #007bff;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .swal-button:hover {
+      background-color: #0056b3;
+    }
+    </style>
 </head>
 <body>
+
   <div class="add-video-container">
+    <!-- <button class="toggle-dark-mode" onclick="toggleDarkMode()">🌙 الوضع الليلي</button> -->
+
     <h1>إضافة فيديو جديد</h1>
 
     <form id="add-video-form">
@@ -80,6 +248,19 @@
     function goBack() {
       window.location.href = "dashboard.html";
     }
+    
+  // تفعيل الوضع الليلي من الـ LocalStorage لو كان مفعل
+  if (localStorage.getItem("darkMode") === "true") {
+    document.body.classList.add("dark-mode");
+  }
+
+  // دالة لتفعيل أو إلغاء الوضع الليلي
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+  }
+
+
   </script>
 </body>
 </html>

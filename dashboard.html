@@ -3,20 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <title>الكورسات - مصطفى ضياء</title>
-  <link rel="stylesheet" href="logstyle.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <style>
+/* تنسيق عصري لواجهة الداشبورد */
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #f2f4f8;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dashboard-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3 {
+  color: #030508;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px 5px 20px 5px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#add-video-btn {
+  background-color: #28a745;
+}
+
+#add-video-btn:hover {
+  background-color: #218838;
+}
+
+#logout-btn {
+  background-color: #dc3545;
+}
+
+#logout-btn:hover {
+  background-color: #c82333;
+}
+
+.course-box {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+  margin-bottom: 25px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.course-box h3 {
+  margin-bottom: 15px;
+  color: #0d6efd;
+}
+
+.course-box p {
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+iframe {
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+/* الوضع الليلي */
+body.dark-mode {
+  background-color: #36365d;
+  color: #f1f1f1;
+}
+
+body.dark-mode .dashboard-container,
+body.dark-mode .course-box {
+  background-color: #2c2c3e;
+  color: #f1f1f1;
+}
+
+body.dark-mode button {
+  background-color: #444;
+  color: #fff;
+}
+
+body.dark-mode .toggle-dark-mode {
+  background-color: #ffa500;
+  color: #222;
+}
+
+/* زر الوضع الليلي */
+.toggle-dark-mode {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  z-index: 1000;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.toggle-dark-mode:hover {
+  background-color: #f9bc04;
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  iframe {
+    height: 240px;
+  }
+}
+
+  </style>
 </head>
 <body>
+  <button class="toggle-dark-mode" onclick="toggleDarkMode()">🌙 الوضع الليلي</button>
+
+
   <div class="dashboard-container">
     <h1>مرحباً، <span id="user-name"></span></h1>
     <h3>المرحلة الدراسية: <span id="user-year"></span></h3>
 
     <div id="courses-container"></div>
 
-    <!-- زر لإضافة فيديو جديد فقط للمسؤول -->
-    <button id="add-video-btn" style="display:none" onclick="window.location.href='add-video.html'">إضافة فيديو</button>
-
-    <!-- زر تسجيل الخروج -->
-    <button id="logout-btn" onclick="logout()">تسجيل الخروج</button>
+    <button id="add-video-btn" style="display:none" onclick="window.location.href='add-video.html'">➕ إضافة فيديو</button>
+    <button id="logout-btn" onclick="logout()">🚪 تسجيل الخروج</button>
   </div>
 
   <script>
@@ -26,16 +166,15 @@
     document.getElementById("user-name").innerText = username;
     document.getElementById("user-year").innerText = year;
 
-    // إظهار زر إضافة الفيديو فقط إذا كان المستخدم هو الأدمن
     if (year === "admin") {
-      document.getElementById("add-video-btn").style.display = "block";
+      document.getElementById("add-video-btn").style.display = "inline-block";
     }
 
     const container = document.getElementById("courses-container");
 
     const renderCourses = (courseList, yearLabel) => {
       const yearHeader = document.createElement("h2");
-      yearHeader.innerText = `📘 كورسات سنة ${yearLabel}`;
+      yearHeader.innerText = `\uD83D\uDCDA كورسات سنة ${yearLabel}`;
       container.appendChild(yearHeader);
 
       courseList.forEach((course, courseIndex) => {
@@ -43,7 +182,7 @@
         courseBox.className = "course-box";
 
         const title = document.createElement("h3");
-        title.innerText = `📚 ${course.course}`;
+        title.innerText = `\uD83D\uDCDA ${course.course}`;
         courseBox.appendChild(title);
 
         course.videos.forEach((video, videoIndex) => {
@@ -57,52 +196,37 @@
           iframe.allow = "autoplay; fullscreen";
           iframe.setAttribute("frameborder", "0");
 
-          // زر الحذف للفيديو يظهر فقط إذا كان المستخدم هو الأدمن
+          courseBox.appendChild(videoTitle);
+          courseBox.appendChild(iframe);
+
           if (year === "admin") {
             const deleteButton = document.createElement("button");
             deleteButton.innerText = "حذف الفيديو";
             deleteButton.style.backgroundColor = "red";
             deleteButton.style.color = "white";
-            deleteButton.style.border = "none";
-            deleteButton.style.padding = "5px 10px";
-            deleteButton.style.cursor = "pointer";
-            deleteButton.onclick = () => {
-              deleteVideo(yearLabel, courseIndex, videoIndex);
-            };
-
+            deleteButton.onclick = () => deleteVideo(yearLabel, courseIndex, videoIndex);
             courseBox.appendChild(deleteButton);
           }
-
-          courseBox.appendChild(videoTitle);
-          courseBox.appendChild(iframe);
         });
 
         container.appendChild(courseBox);
       });
     };
 
-    // دالة لحذف الفيديو
     const deleteVideo = (yearLabel, courseIndex, videoIndex) => {
       const videosByYear = JSON.parse(localStorage.getItem("videosByYear")) || {};
-
-      // حذف الفيديو من قائمة الفيديوهات
       videosByYear[yearLabel][courseIndex].videos.splice(videoIndex, 1);
 
-      // إذا كانت القائمة فارغة بعد الحذف، يتم حذف الكورس
       if (videosByYear[yearLabel][courseIndex].videos.length === 0) {
         videosByYear[yearLabel].splice(courseIndex, 1);
       }
 
-      // حفظ البيانات المعدلة في Local Storage
       localStorage.setItem("videosByYear", JSON.stringify(videosByYear));
-
       alert("✅ تم حذف الفيديو بنجاح!");
-      location.reload();  // إعادة تحميل الصفحة لتحديث العرض
+      location.reload();
     };
 
-    // تحميل الفيديوهات من localStorage
     const videosByYear = JSON.parse(localStorage.getItem("videosByYear")) || {};
-
     if (year === "admin") {
       for (let y in videosByYear) {
         renderCourses(videosByYear[y], y);
@@ -111,16 +235,19 @@
       renderCourses(videosByYear[year], year);
     }
 
-    // دالة لتسجيل الخروج
     function logout() {
-      // إزالة بيانات المستخدم من localStorage
       localStorage.removeItem("user");
       localStorage.removeItem("year");
-
-      // التوجيه إلى صفحة تسجيل الدخول
       window.location.href = "login.html";
     }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+    }
+    function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
+
   </script>
 </body>
 </html>
-                 
