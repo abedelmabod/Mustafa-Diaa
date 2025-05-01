@@ -1,13 +1,77 @@
 {
-  "اولى": [
+ 
+  "أولى": [
     {
       "course": "الكورس الاول",
       "videos": [
         {
-          "title": "عنوان مهم",
-          "url": "https://drive.google.com/file/d/1i1ez0cs9my9wnaZGbPSg5e8iU9Tm-psZ/preview"
+          "title": "تمرين ١٩  جرد العملاء",
+          "url": "https://drive.google.com/file/d/1inUPNBhK7xYKEUCTmY9cmdj_EDOGfo4R/preview"
         }
       ]
     }
+   
+  ],
+  "تانية": [
+    {
+      "course": "محاسبة شركات اموال",
+      "videos": [
+        {
+          "title": "مراجعة1",
+          "url": "https://drive.google.com/file/d/1XvrbPJn8qVJFcnBuDPbwc6Ylo0QAlqWD/preview"
+        }
+      ]
+    },
+    {
+      "course": " محاسبة شركات اموال",
+      "videos": [
+        {
+          "title": "مراجعة نظري",
+          "url": "https://drive.google.com/file/d/1y3ECNo0xexsLLMW87lHYZa0EZm0eNbJu/preview"
+        }
+      ]
+    }
+  ],
+  "رابعة": [
+    {
+      "course": "الكورس الاول",
+      "videos": [
+        {
+          "title": " تكاليف- الأوامر الإنتاجية",
+          "url": "https://drive.google.com/file/d/1Z42_WMLc7I9O9bm3ZsLOvOJOIErbqDme/preview"
+        }
+      ]
+    },
+    {
+      "course": "الكورس االثاني",
+      "videos": [
+        {
+          "title": "تكاليف - المقاولات",
+          "url": "https://drive.google.com/file/d/1TsPNQ8EjiZCH7x0H1_-bxPwJ4521oOGH/preview"
+        }
+      ]
+    },
+    {
+      "course": "الكورس الاول-الترم الثاني ",
+      "videos": [
+        {
+          "title": "محاسبة ضريبية ترم ثاني",
+          "url": "https://drive.google.com/file/d/1AnKkD9pcmjD3mjci-U-l9DnGjQejSO9p/preview"
+        }
+      ]
+    },
+    {
+      "course": "المحاسبة الدولية",
+      "videos": [
+        {
+          "title": "مراجعة عملي المحاسبة الدولية ♥️",
+          "url": "https://drive.google.com/file/d/1LW7fCvTuR_XBS2cvOHa0pwwwU-CHl0rn/preview"
+        }
+      ]
+    }
+
+
+
   ]
+  
 }
